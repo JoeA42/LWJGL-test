@@ -21,6 +21,8 @@ public class Main {
 
         while(!glfwWindowShouldClose(win)){
             glfwPollEvents();
+
+            glfwSwapBuffers(win);
         }
 
         glfwTerminate();
