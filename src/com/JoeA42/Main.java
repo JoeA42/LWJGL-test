@@ -1,42 +1,32 @@
 package com.JoeA42;
-
-public class Main implements Runnable{
-
-    private int width = 1280;
-    private int height = 720;
-
-    private Thread thread;
-    private boolean running = false;
-
-    public void start(){
-        running = false;
-        thread = new Thread(this, "Game");
-        thread.start();
-    }
-
-    private void init(){
+import static org.lwjgl.glfw.GLFW.*;
+import org.lwjgl.opengl.GL;
 
 
-    }
+public class Main {
 
-    public void run(){
-        init();
-        while (running){
-            update();
-            render();
+    public Main(){
+        if (!glfwInit()){ // Initializes GLFW returns false if failed
+            System.err.println("GLFW failed to initialize!");
+            System.exit(1);
         }
 
+        long win = glfwCreateWindow(640,480,"Window",0,0);
+
+        glfwShowWindow(win);
+
+        glfwMakeContextCurrent(win);
+
+        GL.createCapabilities();
+
+        while(!glfwWindowShouldClose(win)){
+            glfwPollEvents();
+        }
+
+        glfwTerminate();
     }
 
-    private void update(){
-
-    }
-
-    private void render(){
-
-    }
-
-    public static void main(String[] args) {
-        new Main().start();
+    public static void main(String[] args){
+        new Main();
     }
 }
